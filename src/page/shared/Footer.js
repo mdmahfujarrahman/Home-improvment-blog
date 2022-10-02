@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import whiteLogo from "../../asset/logo White.png";
+
 
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
+      <footer>
+          <img src={whiteLogo} alt="logo" />
+          <span>Made for Gyasuddin Sir</span>
+      </footer>
+  );
 }
 
 export default Footer

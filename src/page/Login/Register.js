@@ -19,18 +19,21 @@ const Register = () => {
             </div>
             <form data-aos="zoom-in-down">
                 <input
+                    required
                     type="text"
                     name="name"
                     placeholder="Enter Your Name"
                     onChange={hnadleChage}
                 />
                 <input
+                    required
                     type="text"
                     name="email"
                     placeholder="Email"
                     onChange={hnadleChage}
                 />
                 <input
+                    required
                     type="Password"
                     name="password"
                     placeholder="Password"

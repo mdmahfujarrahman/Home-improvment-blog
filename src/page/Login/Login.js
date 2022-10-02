@@ -21,12 +21,14 @@ const Login = () => {
             </div>
             <form data-aos="zoom-in-up">
                 <input
+                    required
                     type="text"
                     name="email"
                     placeholder="Email"
                     onChange={hnadleChage}
                 />
                 <input
+                    required
                     type="Password"
                     name="password"
                     placeholder="Password"

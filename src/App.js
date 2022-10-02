@@ -1,3 +1,6 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./page/Home/Home";
 import SingleBlog from "./page/Home/SingleBlog";
@@ -7,9 +10,6 @@ import Register from "./page/Login/Register";
 import Footer from "./page/shared/Footer";
 import Navbar from "./page/shared/Navbar";
 import './style.scss';
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 const LayoutPages = () => {
     return (
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "/post",
+                path: "/post/:id",
                 element: <SingleBlog />,
             },
             {
