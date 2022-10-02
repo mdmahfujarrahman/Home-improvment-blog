@@ -1,0 +1,80 @@
+$primary-color: #2d7af1;
+$secondary-color: #10548c;
+body {
+    margin: 0;
+    padding: 0;
+}
+.app {
+    .container {
+        .user-login-container {
+            background-color: $secondary-color;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+
+            .login-logo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                img {
+                    width: 15%;
+                    margin-bottom: 5px;
+                }
+                h1 {
+                    font-size: 50px;
+                    color: #fff;
+                    margin-bottom: 20px;
+                    margin-top: 0;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                padding: 50px;
+                gap: 30px;
+                width: 220px;
+                background-color: #fff;
+                border-radius: 3px;
+                input {
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 2px solid $primary-color;
+                }
+                input:focus {
+                    outline: none;
+                }
+                button {
+                    color: #fff !important;
+                    padding: 15px 0;
+                    background-color: #2d7af1;
+                    border: none;
+                    font-size: 18px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+
+                .error-message {
+                    text-align: center;
+                    p {
+                        margin: 0;
+                        margin-bottom: 7px;
+                        color: red;
+                    }
+                    span {
+                        font-size: 16px;
+                        a {
+                            text-decoration: none;
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
