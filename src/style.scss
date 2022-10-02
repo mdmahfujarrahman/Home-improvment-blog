@@ -130,7 +130,7 @@ body {
                 }
             }
         }
-
+        //single blog
         .single-blog {
             display: flex;
             gap: 50px;
@@ -216,6 +216,90 @@ body {
                         background-color: white;
                         border: 1px solid $primary-color;
                         color: $primary-colors;
+                    }
+                }
+            }
+        }
+        //write Blog
+        .white-blog {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+
+            .content {
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                input {
+                    padding: 10px;
+                    border: 1px solid lightgrey;
+                }
+                .editContainer {
+                    height: 450px;
+                    width: 100%;
+                    overflow: scroll;
+                    border: 1px solid lightgray;
+
+                    .editor {
+                        height: 100%;
+                        border: none;
+                    }
+                }
+            }
+            .side-bar {
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .editorBox {
+                    border: 1px solid lightgrey;
+                    padding: 10px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 10px;
+                    font-size: 16px;
+                    color: #555;
+                    h1 {
+                        font-size: 26px;
+                    }
+
+                    .buttons {
+                        display: flex;
+                        justify-content: space-between;
+
+                        :first-child {
+                            cursor: pointer;
+                            color: $primary-color;
+                            background-color: white;
+                            border: 1px solid $primary-color;
+                            border-radius: 3px;
+                            padding: 8px 8px;
+                        }
+                        :last-child {
+                            cursor: pointer;
+                            color: white;
+                            background-color: $primary-color;
+                            border: 1px solid white;
+                            border-radius: 3px;
+                            padding: 8px 8px;
+                        }
+                    }
+                    label {
+                        cursor: pointer;
+                    }
+
+                    .singleCategory {
+                        display: flex;
+                        align-items: center;
+                        font-size: 16px;
+                        gap: 5px;
+                        margin-bottom: 5px;
+                        color: $primary-color;
                     }
                 }
             }
