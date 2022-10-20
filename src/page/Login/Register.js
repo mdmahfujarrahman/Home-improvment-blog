@@ -1,16 +1,53 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../App";
 import logoWhite from "../../asset/logo White.png";
+import nextArrow from "../../asset/next-arrow.png";
+import { CreateUser } from "../../util/authApi";
 
 const Register = () => {
+    const { setGlobal } = useContext(UserContext);
+
+    useEffect(() => {
+        const path = window?.location?.pathname;
+        setGlobal({ pathName: path });
+    }, []);
+
+    const navigate = useNavigate()
     const [userData, setUserData] = useState({
         email: "",
         password: "",
+        name: "",
     });
 
-    const hnadleChage = () => {
-        // setUserData(prev => ...userData, [userData.e.key]: userData.e.value)
+
+    const hnadleChage = (e) => {
+        setUserData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
     };
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        try {
+            if (userData.name && userData.email && userData.password) {
+                const res = await CreateUser(userData);
+                if(res.status === 200){
+                    navigate("/login")
+                }
+            } else {
+                toast.error("Enter Name, email and password");
+            }
+               
+        } catch (err) {
+            toast.error(err?.response?.data?.message);
+        }
+        
+    }
+
     return (
         <div className="user-login-container">
             <div className="login-logo" data-aos="zoom-in-down">
@@ -19,35 +56,40 @@ const Register = () => {
             </div>
             <form data-aos="zoom-in-down">
                 <input
-                    required
                     type="text"
                     name="name"
                     placeholder="Enter Your Name"
                     onChange={hnadleChage}
+                    required
                 />
                 <input
-                    required
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     onChange={hnadleChage}
+                    required
                 />
                 <input
-                    required
-                    type="Password"
+                    type="password"
                     name="password"
                     placeholder="Password"
                     onChange={hnadleChage}
+                    required
                 />
-                <button>Register</button>
+                <button onClick={handleSubmit}>Register</button>
                 <div className="error-message">
-                    <p>This is error</p>
                     <span>
                         Have you an account?{"  "}
                         <Link to="/login">Login</Link>{" "}
                     </span>
                 </div>
             </form>
+            <div>
+                <Link className="extra-content" to="/">
+                    <img src={nextArrow} alt="next Arrow" />
+                    <p>Back to Home Page</p>
+                </Link>
+            </div>
         </div>
     );
 };

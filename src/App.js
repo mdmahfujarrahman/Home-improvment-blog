@@ -1,6 +1,6 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./page/Home/Home";
 import SingleBlog from "./page/Home/SingleBlog";
@@ -10,8 +10,13 @@ import Register from "./page/Login/Register";
 import Footer from "./page/shared/Footer";
 import Navbar from "./page/shared/Navbar";
 import './style.scss';
+import Protected from "./util/Protected";
+export const UserContext = createContext();
+
+
 
 const LayoutPages = () => {
+    
     return (
         <>
             <Navbar />
@@ -31,12 +36,12 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "/post/:id",
+                path: "/post/:postId",
                 element: <SingleBlog />,
             },
             {
                 path: "/write",
-                element: <WriteBlog />,
+                element: <Protected children={<WriteBlog />} />,
             },
         ],
     },
@@ -51,16 +56,29 @@ const router = createBrowserRouter([
 ]);
 
 
+
 function App() {
+    const [global, setGlobal] = useState({})
     useEffect(() => {
         AOS.init();
         AOS.refresh();
     }, []);
 
+
     return (
-        <div className="app">
-            <div className="container">
-                <RouterProvider router={router} />
+        <div
+            className={`${
+                global.pathName === "/login" || global.pathName === "/register"
+                    ? ""
+                    : "app"
+            }`}
+        >
+            <div
+                className="container"
+            >
+                <UserContext.Provider value={{ global, setGlobal }}>
+                    <RouterProvider router={router} />
+                </UserContext.Provider>
             </div>
         </div>
     );

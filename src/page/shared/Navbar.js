@@ -1,10 +1,21 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../asset/favicon.png';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
+    const {user} = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogout =() => {
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("accessToken");
+        window.location.reload();
+    }
+
+ 
   return (
-      <div className="navbar">
+      <div data-aos="fade-down" className="navbar">
           <div className="container">
               <div className="logo">
                   <Link to="/">
@@ -15,7 +26,7 @@ const Navbar = () => {
                   <Link className="link" to="/?category=design">
                       <h6>Design</h6>
                   </Link>
-                  <Link className="link" to="/?category=kitchen-remodel">
+                  <Link className="link" to="/?category=remodel">
                       <h6>Remodel</h6>
                   </Link>
                   <Link className="link" to="/?category=flooring">
@@ -27,8 +38,8 @@ const Navbar = () => {
                   <Link className="link" to="/?category=electrical">
                       <h6>Electrical</h6>
                   </Link>
-                  <span>Mahfuj</span>
-                  <span>Logout</span>
+                  <span>{user?.name}</span>
+                  {user ? <span onClick={() => handleLogout()}>Logout</span> : <span onClick={() => navigate(`/login`)}>Login</span>}
                   <span className="write">
                       <Link className="link" to="/write">
                           Write
