@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -62,7 +63,7 @@ const SingleBlog = () => {
                     </div>
                     {user && user?.name === post?.name && (
                         <div className="action">
-                            <Link to={`/white?edit=2`}>
+                            <Link to={`/write?edit=2`} state={post}>
                                 <img src={editPhoto} alt="editPhoto" />
                             </Link>
                             <img
@@ -74,7 +75,11 @@ const SingleBlog = () => {
                     )}
                 </div>
                 <h1>{post.title}</h1>
-                {post?.des}
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(post.des),
+                    }}
+                ></p>
             </div>
             <SideBar category={post} />
         </div>

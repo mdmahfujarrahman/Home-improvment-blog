@@ -1,6 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { createContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./page/Home/Home";
 import SingleBlog from "./page/Home/SingleBlog";
@@ -73,13 +74,12 @@ function App() {
                     : "app"
             }`}
         >
-            <div
-                className="container"
-            >
+            <div className="container">
                 <UserContext.Provider value={{ global, setGlobal }}>
                     <RouterProvider router={router} />
                 </UserContext.Provider>
             </div>
+            <Toaster position="top-right" />
         </div>
     );
 }

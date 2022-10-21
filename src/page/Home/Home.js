@@ -31,6 +31,10 @@ const Home = () => {
             navigate(`/post/${id}`)
         }
   }
+  const convertHtml = (html) => {
+    const text = new DOMParser().parseFromString(html, "text/html");
+    return text.body.textContent
+  }
   
 
   return (
@@ -45,7 +49,7 @@ const Home = () => {
                           <Link className="link" to={`/post/${post.id}`}>
                               <h1>{post.title}</h1>
                           </Link>
-                          <p>{post.des}</p>
+                          <p>{convertHtml(post.des.slice(0, 250))}</p>
                           <button onClick={() => navigateBtn(post.id)}>
                               Read More
                           </button>

@@ -34,7 +34,7 @@ const Login = () => {
         try {
             if (userData.email && userData.password) {
                 const res = await LoginUser(userData);
-                console.log(res.data);
+                toast.success("Time to explore");
                 localStorage.setItem("accessToken", res.data.token);
                 localStorage.setItem(
                     "userInfo",
@@ -44,6 +44,7 @@ const Login = () => {
                     navigate("/");
                     setSpin(false);
                 }
+
 
             } else {
                 toast.error("Enter email and password");
@@ -57,7 +58,6 @@ const Login = () => {
  
     return (
         <div className="user-login-container">
-            <Toaster position="top-right" />
             <div className="login-logo" data-aos="zoom-in-up">
                 <img src={logoWhite} alt="logo" />
                 <h1>Login</h1>
